@@ -1,0 +1,7 @@
+---
+name: wechatfund
+version: 1
+worker: tornado
+libraries:
+- name: tornado
+  version: "2.4.1"
