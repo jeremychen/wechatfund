@@ -15,18 +15,24 @@ class Query(tornado.web.RequestHandler):
             
 class WinxinPost(tornado.web.RequestHandler):
     def get(self):
-        if views.valid(self.get_argument('signature'),
-                       self.get_argument('timestamp'),
-                       self.get_argument('nonce')):
-            self.write(self.get_argument('echostr'))
+        try:
+            if views.valid(self.get_argument('signature'),
+                        self.get_argument('timestamp'),
+                        self.get_argument('nonce')):
+                self.write(self.get_argument('echostr'))
+        except tornado.web.HTTPError:
+            self.write('')
     
     def post(self):
-        if views.valid(self.get_argument('signature'),
-                       self.get_argument('timestamp'),
-                       self.get_argument('nonce')):
-            data = views.processXml(self.request.body)
-            self.set_header("Content-Type", "application/xml; charset=UTF-8")
-            self.write(data)
+        try:
+            if views.valid(self.get_argument('signature'),
+                        self.get_argument('timestamp'),
+                        self.get_argument('nonce')):
+                data = views.processXml(self.request.body)
+                self.set_header("Content-Type", "application/xml; charset=UTF-8")
+                self.write(data)
+        except tornado.web.HTTPError:
+            self.write('')
 
 application = tornado.web.Application([
     (r"/query", Query),
