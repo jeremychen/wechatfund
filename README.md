@@ -7,6 +7,10 @@
 1. 微信公众账号基金净值查询与订阅;
 2. 基金净值查询api.
 
+## DEMO ##
+
+![Alt text](http://ww1.sinaimg.cn/large/8814fff8gw1e82s1rfr2aj20by0byq3u.jpg)
+
 ## 部署 ##
 ### 环境 ###
 
@@ -50,10 +54,10 @@ http://yourhost/query?q=基金代码1|基金代码2
 返回JSON格式:
 
     {
-        "resultcode": 200,                                      # 返回结果码,200正常,101输入不正确,201基金不存在
+        "resultcode": 200,    # 返回结果码,200正常,101输入不正确,201基金不存在
         "result": [
             {
-                "code": "000001",   # 基金代码
+                "code": "000001",                               # 基金代码
                 "name": "\u534e\u590f\u6210\u957f\u6df7\u5408", # 基金名称
                 "daygrowrate": "-1.27%",                        # 基金涨幅
                 "newnet": "1.0860"                              # 基金净值
