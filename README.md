@@ -41,9 +41,13 @@ SAE(Sina App Engine) python tornado环境,kvDB开启支持.
 #### 功能1 ####
 
 注册微信公众号试,填写url必须为http://yourhost/wx
+
 1. 输入基金代码直接查询基金净值
+
 2. 输入a+基金代码订阅基金,数据存入kvdb,key为用户id,value为通过cPickle序列化后的list
+
 3. 输入r+基金代码取消订阅,kvdb直接删除该基金代码
+
 4. 输入c查询订阅基金,遍历用户id对应的list
 
 #### 功能2 ####
