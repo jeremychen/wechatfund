@@ -2,21 +2,12 @@
 
 #import tornado.ioloop
 import tornado.web
-import views
-
-class Query(tornado.web.RequestHandler):
-    def get(self):
-        if self.get_argument('q', default=None):
-            data = views.resultJson(self.get_argument('q'))
-            self.set_header("Content-Type", "application/json; charset=UTF-8")
-            self.write(data)
-        else:
-            raise tornado.web.HTTPError(404)
+import handlers
             
-class WinxinPost(tornado.web.RequestHandler):
+class WechatHandler(tornado.web.RequestHandler):
     def get(self):
         try:
-            if views.valid(self.get_argument('signature'),
+            if handlers.valid(self.get_argument('signature'),
                         self.get_argument('timestamp'),
                         self.get_argument('nonce')):
                 self.write(self.get_argument('echostr'))
@@ -25,18 +16,17 @@ class WinxinPost(tornado.web.RequestHandler):
     
     def post(self):
         try:
-            if views.valid(self.get_argument('signature'),
+            if handlers.valid(self.get_argument('signature'),
                         self.get_argument('timestamp'),
                         self.get_argument('nonce')):
-                data = views.processXml(self.request.body)
+                data = handlers.processXml(self.request.body)
                 self.set_header("Content-Type", "application/xml; charset=UTF-8")
                 self.write(data)
         except tornado.web.HTTPError:
             self.write('')
 
 application = tornado.web.Application([
-    (r"/query", Query),
-    (r"/wx", WinxinPost),
+    (r"/wx", WechatHandler),
     (r"/", tornado.web.RedirectHandler, dict(url="https://github.com/zhu327/wechatfund")),
 ], debug=True)
 
