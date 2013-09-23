@@ -2,7 +2,7 @@
 
 import time
 from jsquery import query, queryAny
-from xml import toDict, toXml
+from wxml import toDict, toXml
 from saedb import SaeDb
 from hashlib import sha1
 
