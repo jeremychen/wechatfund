@@ -39,7 +39,7 @@ SAE(Sina App Engine) python tornado环境,kvDB开启支持.
 
 #### 功能1 ####
 
-注册微信公众号试,填写url必须为http://yourhost/wx
+注册微信公众号试,填写url必须为http://yourhost/wechatfund
 
 1. 输入基金代码直接查询基金净值
 
