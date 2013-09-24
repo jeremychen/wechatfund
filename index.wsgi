@@ -26,7 +26,7 @@ class WechatHandler(tornado.web.RequestHandler):
             self.write('')
 
 application = tornado.web.Application([
-    (r"/wx", WechatHandler),
+    (r"/wechatfund", WechatHandler),
     (r"/", tornado.web.RedirectHandler, dict(url="https://github.com/zhu327/wechatfund")),
 ], debug=True)
 
